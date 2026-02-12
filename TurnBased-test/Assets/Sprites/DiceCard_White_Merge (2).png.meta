@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: a64456b811b60456bba6f5faece0e363
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1881897485329077191
+    second: DiceCard_White_Merge (2)_0
+  - first:
+      213: -8893135501120512848
+    second: DiceCard_White_Merge (2)_1
+  - first:
+      213: -5505359591808747512
+    second: DiceCard_White_Merge (2)_2
+  - first:
+      213: -2168975790528583063
+    second: DiceCard_White_Merge (2)_3
+  - first:
+      213: -3589907423855589118
+    second: DiceCard_White_Merge (2)_4
+  - first:
+      213: 1583134927974367730
+    second: DiceCard_White_Merge (2)_5
+  - first:
+      213: 7597406679334630672
+    second: DiceCard_White_Merge (2)_6
+  - first:
+      213: -4976999710792643182
+    second: DiceCard_White_Merge (2)_7
+  - first:
+      213: -4609561276210629891
+    second: DiceCard_White_Merge (2)_8
+  - first:
+      213: 8731495405519807021
+    second: DiceCard_White_Merge (2)_9
+  - first:
+      213: -3873623654059050360
+    second: DiceCard_White_Merge (2)_10
+  - first:
+      213: -4656906167996564601
+    second: DiceCard_White_Merge (2)_11
+  - first:
+      213: -4170122985094031516
+    second: DiceCard_White_Merge (2)_12
+  - first:
+      213: 6790273165857092156
+    second: DiceCard_White_Merge (2)_13
+  - first:
+      213: -7658116327685082463
+    second: DiceCard_White_Merge (2)_14
+  - first:
+      213: -1494713435527660448
+    second: DiceCard_White_Merge (2)_15
+  - first:
+      213: -8831280063871291948
+    second: DiceCard_White_Merge (2)_16
+  - first:
+      213: 931849213872093647
+    second: DiceCard_White_Merge (2)_17
+  - first:
+      213: -4615366810289011885
+    second: DiceCard_White_Merge (2)_18
+  - first:
+      213: 2161733614459268265
+    second: DiceCard_White_Merge (2)_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_0
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 1784
+        width: 139
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c39dbccac7dd1a10800000000000000
+      internalID: 1881897485329077191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_1
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 1784
+        width: 124
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bcdb4c216c359480800000000000000
+      internalID: -8893135501120512848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_2
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 1777
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8083371be980993b0800000000000000
+      internalID: -5505359591808747512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_3
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 1516
+        width: 509
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96a2f1f920046e1e0800000000000000
+      internalID: -2168975790528583063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_4
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1751
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 209cc88d7361e2ec0800000000000000
+      internalID: -3589907423855589118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1588
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f10d6544dc68f510800000000000000
+      internalID: 1583134927974367730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_6
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 1557
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 015bbef3f196f6960800000000000000
+      internalID: 7597406679334630672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_7
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1556
+        width: 24
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29d8bfed1252eeab0800000000000000
+      internalID: -4976999710792643182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_8
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 1561
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df2b119117c8700c0800000000000000
+      internalID: -4609561276210629891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_9
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 1553
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d22a6f35fc08c2970800000000000000
+      internalID: 8731495405519807021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_10
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1211
+        width: 404
+        height: 338
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88a724a5fcf1e3ac0800000000000000
+      internalID: -3873623654059050360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_11
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 1483
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78b3d3873885f5fb0800000000000000
+      internalID: -4656906167996564601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_12
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 830
+        width: 507
+        height: 685
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46757c34d3fb026c0800000000000000
+      internalID: -4170122985094031516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_13
+      rect:
+        serializedVersion: 2
+        x: 985
+        y: 1424
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3277cac775eb3e50800000000000000
+      internalID: 6790273165857092156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_14
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 832
+        width: 405
+        height: 429
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a236bf36c7e8b590800000000000000
+      internalID: -7658116327685082463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_15
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 755
+        width: 17
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06cbe5abc06b14be0800000000000000
+      internalID: -1494713435527660448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_16
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 729
+        width: 11
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dd66f0729df07580800000000000000
+      internalID: -8831280063871291948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_17
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 712
+        width: 6
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc9b2114ce79eec00800000000000000
+      internalID: 931849213872093647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_18
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 7
+        width: 31
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 353889cd65ce2ffb0800000000000000
+      internalID: -4615366810289011885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiceCard_White_Merge (2)_19
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 1
+        width: 607
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9acaddcd445000e10800000000000000
+      internalID: 2161733614459268265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      DiceCard_White_Merge (2)_0: 1881897485329077191
+      DiceCard_White_Merge (2)_1: -8893135501120512848
+      DiceCard_White_Merge (2)_10: -3873623654059050360
+      DiceCard_White_Merge (2)_11: -4656906167996564601
+      DiceCard_White_Merge (2)_12: -4170122985094031516
+      DiceCard_White_Merge (2)_13: 6790273165857092156
+      DiceCard_White_Merge (2)_14: -7658116327685082463
+      DiceCard_White_Merge (2)_15: -1494713435527660448
+      DiceCard_White_Merge (2)_16: -8831280063871291948
+      DiceCard_White_Merge (2)_17: 931849213872093647
+      DiceCard_White_Merge (2)_18: -4615366810289011885
+      DiceCard_White_Merge (2)_19: 2161733614459268265
+      DiceCard_White_Merge (2)_2: -5505359591808747512
+      DiceCard_White_Merge (2)_3: -2168975790528583063
+      DiceCard_White_Merge (2)_4: -3589907423855589118
+      DiceCard_White_Merge (2)_5: 1583134927974367730
+      DiceCard_White_Merge (2)_6: 7597406679334630672
+      DiceCard_White_Merge (2)_7: -4976999710792643182
+      DiceCard_White_Merge (2)_8: -4609561276210629891
+      DiceCard_White_Merge (2)_9: 8731495405519807021
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

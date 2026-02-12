@@ -1,0 +1,89 @@
+.card {
+  width: 100px;
+  height: 130px;
+  picking-mode: position;
+  cursor: pointer;
+  position: relative;
+  overflow: visible;
+
+  /* Content inset */
+  padding: 10px;
+}
+
+.card__bg,
+.card__overlay {
+  position: absolute;
+  picking-mode: ignore;
+}
+
+.card__bg {
+  left: -25px;
+  top: -13px;
+  width: 160%;
+  height: 113%;
+}
+
+.card__overlay {
+  left: 15px;
+  top: -3px;
+  width: 85%;
+  height: 90%;
+}
+
+.card__corner {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+
+  /* Don't block clicks */
+  picking-mode: ignore;
+}
+
+.card__corner--tl {
+  left: 14px;
+  top: -20px;
+  width: 75%;
+  height: 80%;
+}
+
+.card__corner--br {
+  right: 7.5px;
+  bottom: 0px;
+  width: 75%;
+  height: 80%;
+}
+
+
+.card__header {
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.card__title {
+  unity-font: url("project://database/Assets/Fonts/NANUMBARUNGOTHIC.ttf");
+  unity-font-style: bold;
+  font-size: 8px;
+  rotate: -10deg;
+  color:rgb(0, 0, 0);
+  -unity-text-align: middle-center;
+  
+  /* Banner width so centering is consistent */
+  width: 75%;
+  flex-grow: 0;
+  margin-right: 0px;
+  margin-top: 5px;
+}
+
+.card__costIcon {
+  position: absolute;
+  left: 17px;
+  top: 0px;
+  width: 18px;
+  height: 18px;
+  rotate: -5deg;
+  picking-mode: ignore;
+}
+

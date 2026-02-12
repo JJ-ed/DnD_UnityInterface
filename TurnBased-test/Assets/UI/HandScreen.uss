@@ -1,0 +1,25 @@
+.handScreen {
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+
+  /* Bottom-center placement */
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+  padding: 12px;
+}
+
+.hand {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  /* Background sprite (assigned in C# if desired) */
+  padding: 7px;
+  -unity-background-scale-mode: scale-and-crop;
+
+  overflow: hidden;
+}
+

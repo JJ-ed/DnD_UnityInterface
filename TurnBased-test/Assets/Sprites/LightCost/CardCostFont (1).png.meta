@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: 25314c7d5ed90497ca83c531d6577a58
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4879977988160176884
+    second: CardCostFont (1)_0
+  - first:
+      213: -3182248850148010594
+    second: CardCostFont (1)_1
+  - first:
+      213: 2238793161663078573
+    second: CardCostFont (1)_2
+  - first:
+      213: -4823013871888181503
+    second: CardCostFont (1)_3
+  - first:
+      213: 3866895050477445772
+    second: CardCostFont (1)_4
+  - first:
+      213: -3337632220713140300
+    second: CardCostFont (1)_5
+  - first:
+      213: -7103931476914446464
+    second: CardCostFont (1)_6
+  - first:
+      213: -2479032503923597239
+    second: CardCostFont (1)_7
+  - first:
+      213: -7977277190845546641
+    second: CardCostFont (1)_8
+  - first:
+      213: 7947446363602849074
+    second: CardCostFont (1)_9
+  - first:
+      213: -5342096802027841922
+    second: CardCostFont (1)_10
+  - first:
+      213: -4748560959780579617
+    second: CardCostFont (1)_11
+  - first:
+      213: 9072744856721401450
+    second: CardCostFont (1)_12
+  - first:
+      213: 2227112874331244319
+    second: CardCostFont (1)_13
+  - first:
+      213: 1812010810539659786
+    second: CardCostFont (1)_14
+  - first:
+      213: -1219003230554142134
+    second: CardCostFont (1)_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CardCostFont (1)_0
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 809
+        width: 42
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0dbcffffd5d64cb0800000000000000
+      internalID: -4879977988160176884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_1
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 810
+        width: 108
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e955804f78166d3d0800000000000000
+      internalID: -3182248850148010594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_2
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 810
+        width: 118
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da06086d48ac11f10800000000000000
+      internalID: 2238793161663078573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_3
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 808
+        width: 151
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 107d25bdf66311db0800000000000000
+      internalID: -4823013871888181503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_4
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 554
+        width: 117
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c82ac6b8f88f9a530800000000000000
+      internalID: 3866895050477445772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_5
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 554
+        width: 113
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bfbe75cd295ea1d0800000000000000
+      internalID: -3337632220713140300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_6
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 554
+        width: 120
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08f5cc1c5f3c96d90800000000000000
+      internalID: -7103931476914446464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_7
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 549
+        width: 111
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 940acf87215b89dd0800000000000000
+      internalID: -2479032503923597239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_8
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 297
+        width: 119
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6f33dc09a40b4190800000000000000
+      internalID: -7977277190845546641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_9
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 297
+        width: 118
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23d840e3c500b4e60800000000000000
+      internalID: 7947446363602849074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_10
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 268
+        width: 211
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e76516f134f0dd5b0800000000000000
+      internalID: -5342096802027841922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_11
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 306
+        width: 127
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd69dfd47f8b91eb0800000000000000
+      internalID: -4748560959780579617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_12
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 19
+        width: 206
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a66a1a2b06dd8ed70800000000000000
+      internalID: 9072744856721401450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_13
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 55
+        width: 127
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1786350c5b48ee10800000000000000
+      internalID: 2227112874331244319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_14
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 16
+        width: 212
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0252635b3e852910800000000000000
+      internalID: 1812010810539659786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardCostFont (1)_15
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 55
+        width: 127
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4a44c6350b351fe0800000000000000
+      internalID: -1219003230554142134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CardCostFont (1)_0: -4879977988160176884
+      CardCostFont (1)_1: -3182248850148010594
+      CardCostFont (1)_10: -5342096802027841922
+      CardCostFont (1)_11: -4748560959780579617
+      CardCostFont (1)_12: 9072744856721401450
+      CardCostFont (1)_13: 2227112874331244319
+      CardCostFont (1)_14: 1812010810539659786
+      CardCostFont (1)_15: -1219003230554142134
+      CardCostFont (1)_2: 2238793161663078573
+      CardCostFont (1)_3: -4823013871888181503
+      CardCostFont (1)_4: 3866895050477445772
+      CardCostFont (1)_5: -3337632220713140300
+      CardCostFont (1)_6: -7103931476914446464
+      CardCostFont (1)_7: -2479032503923597239
+      CardCostFont (1)_8: -7977277190845546641
+      CardCostFont (1)_9: 7947446363602849074
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

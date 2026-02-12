@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <!-- Load card styles once (shared by all cards). -->
+    <Style src="project://database/Assets/UI/Card_Select.uss" />
+    <Style src="project://database/Assets/UI/HandScreen.uss" />
+
+    <ui:VisualElement name="Root" class="handScreen">
+        <ui:VisualElement name="Hand" class="hand" />
+    </ui:VisualElement>
+</ui:UXML>
+
