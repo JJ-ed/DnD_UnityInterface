@@ -8,18 +8,25 @@
   justify-content: flex-end;
   align-items: center;
 
-  padding: 12px;
+  /* Extra bottom/side padding so rotated cards aren't clipped by the screen edge */
+  padding: 30px 40px 40px 40px;
+
+  /* Let cards extend beyond this container */
+  overflow: visible;
 }
 
 .hand {
+  left: 0px;  
+  top: 60px;
+
   flex-direction: row;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-wrap: nowrap;
 
   /* Background sprite (assigned in C# if desired) */
   padding: 7px;
   -unity-background-scale-mode: scale-and-crop;
 
-  overflow: hidden;
+  /* Allow card decorations and overlap to render */
+  overflow: visible;
 }
 

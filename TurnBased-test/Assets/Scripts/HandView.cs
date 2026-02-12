@@ -3,10 +3,9 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-/// <summary>
-/// Renders a hand/grid of cards by cloning `CardTemplate.uxml` into the `Hand` container.
-/// This version uses the simple flex-wrap layout (no fan/overlap).
-/// </summary>
+/// Renders a hand of cards by cloning `CardTemplate.uxml` into the `Hand` container.
+/// Cards overlap horizontally and are arranged in a fan arc (rotation + vertical offset).
+/// Hover animation is handled via USS transitions on the `.card` element.
 [RequireComponent(typeof(UIDocument))]
 public sealed class HandView : MonoBehaviour
 {
@@ -27,6 +26,13 @@ public sealed class HandView : MonoBehaviour
 
     [Header("Selection")]
     [SerializeField] private bool singleSelect = true;
+
+    [Header("Hand Layout")]
+    [Tooltip("Negative margin (px) between cards. More negative = more overlap.")]
+    [SerializeField] private float cardOverlapMargin = -20f;
+
+    [Tooltip("Maximum rotation (degrees) at the outermost cards. Center card stays upright (0).")]
+    [SerializeField] private float maxFanAngle = 5f;
 
     [Header("Hand Background")]
     [Tooltip("Sprite used as the background of the hand container (VisualElement named 'Hand').")]
@@ -99,12 +105,26 @@ public sealed class HandView : MonoBehaviour
         _hand.Clear();
         _cards.Clear();
 
-        for (var i = 0; i < cards.Count; i++)
+        var count = cards.Count;
+
+        for (var i = 0; i < count; i++)
         {
             var data = cards[i];
 
             // Clone the template and add it to the hand container.
             var instance = cardTemplate.CloneTree();
+
+            // --- Overlap: negative left margin (skip first card) ---
+            if (i > 0)
+                instance.style.marginLeft = new StyleLength(cardOverlapMargin);
+
+            // --- Uniform rotation: all cards tilt the same direction ---
+            instance.style.transformOrigin = new StyleTransformOrigin(
+                new TransformOrigin(
+                    new Length(50, LengthUnit.Percent),
+                    new Length(100, LengthUnit.Percent)));
+            instance.style.rotate = new StyleRotate(new Rotate(new Angle(maxFanAngle, AngleUnit.Degree)));
+
             _hand.Add(instance);
 
             // Find the actual card root element (named "Card") inside the clone.

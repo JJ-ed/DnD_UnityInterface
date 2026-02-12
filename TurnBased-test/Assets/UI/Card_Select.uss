@@ -1,13 +1,30 @@
 .card {
-  width: 100px;
-  height: 130px;
+  width: 150px;
+  height: 200px;
   picking-mode: position;
   cursor: pointer;
   position: relative;
   overflow: visible;
 
   /* Content inset */
-  padding: 10px;
+  padding: 15px;
+
+  scale: 0.75;
+  margin: -25px -19px;
+
+  /* Hover animation: scale from bottom-center so card lifts upward */
+  transform-origin: 50% 100%;
+  translate: 0 0;
+
+  /* Smooth transitions for hover pop */
+  transition-property: scale, translate;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+}
+
+.card--hover {
+  scale: 0.825;
+  translate: 0 -15px;
 }
 
 .card__bg,
@@ -17,15 +34,15 @@
 }
 
 .card__bg {
-  left: -25px;
-  top: -13px;
+  left: -37px;
+  top: -20px;
   width: 160%;
   height: 113%;
 }
 
 .card__overlay {
-  left: 15px;
-  top: -3px;
+  left: 22px;
+  top: -5px;
   width: 85%;
   height: 90%;
 }
@@ -40,14 +57,14 @@
 }
 
 .card__corner--tl {
-  left: 14px;
-  top: -20px;
+  left: 21px;
+  top: -30px;
   width: 75%;
   height: 80%;
 }
 
 .card__corner--br {
-  right: 7.5px;
+  right: 11px;
   bottom: 0px;
   width: 75%;
   height: 80%;
@@ -65,24 +82,25 @@
 .card__title {
   unity-font: url("project://database/Assets/Fonts/NANUMBARUNGOTHIC.ttf");
   unity-font-style: bold;
-  font-size: 8px;
+  font-size: 12px;
+  top: 3.5px;
   rotate: -10deg;
-  color:rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
   -unity-text-align: middle-center;
   
   /* Banner width so centering is consistent */
   width: 75%;
   flex-grow: 0;
   margin-right: 0px;
-  margin-top: 5px;
+  margin-top: 8px;
 }
 
 .card__costIcon {
   position: absolute;
-  left: 17px;
+  left: 25px;
   top: 0px;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   rotate: -5deg;
   picking-mode: ignore;
 }

@@ -443,6 +443,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HandView
   cardTemplate: {fileID: 9197481963319205126, guid: a9aa5547b4ec24bc099b2b921ffbb71d, type: 3}
   singleSelect: 1
+  cardOverlapMargin: -45
+  maxFanAngle: -5
   handBackgroundSprite: {fileID: 0}
   cardBackgroundSprite: {fileID: 7857536792324979261, guid: 0bd7571f18b1d469ebd397653cb9e2ed, type: 3}
   cardOverlaySprite: {fileID: -4170122985094031516, guid: a64456b811b60456bba6f5faece0e363, type: 3}
