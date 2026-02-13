@@ -3,9 +3,6 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-/// Renders a hand of cards by cloning `CardTemplate.uxml` into the `Hand` container.
-/// Cards overlap horizontally and are arranged in a fan arc (rotation + vertical offset).
-/// Hover animation is handled via USS transitions on the `.card` element.
 [RequireComponent(typeof(UIDocument))]
 public sealed class HandView : MonoBehaviour
 {
@@ -35,31 +32,25 @@ public sealed class HandView : MonoBehaviour
     [SerializeField] private float maxFanAngle = 5f;
 
     [Header("Hand Background")]
-    [Tooltip("Sprite used as the background of the hand container (VisualElement named 'Hand').")]
+    [Tooltip("Sprite used as the background of the hand container.")]
     [SerializeField] private Sprite? handBackgroundSprite;
 
     [Header("Card Background")]
-    [Tooltip("Base sprite used as the card background (Image named 'CardBg').")]
+    [Tooltip("Base sprite used as the card background.")]
     [SerializeField] private Sprite? cardBackgroundSprite;
 
     [Header("Card Overlay")]
-    [Tooltip("Overlay sprite drawn on top of the card background (Image named 'CardOverlay').")]
+    [Tooltip("Overlay sprite drawn on top of the card background.")]
     [SerializeField] private Sprite? cardOverlaySprite;
 
     [Header("Card Corners")]
-    [Tooltip("Top-left corner sprite (assign DiceCard_White_Merge (2)_10).")]
+    [Tooltip("Top-left corner sprite")]
     [SerializeField] private Sprite? cornerTopLeftSprite;
 
-    [Tooltip("Bottom-right corner sprite (assign DiceCard_White_Merge (2)_14).")]
+    [Tooltip("Bottom-right corner sprite")]
     [SerializeField] private Sprite? cornerBottomRightSprite;
 
     [Header("Light Cost Sprites")]
-    [Tooltip("Assign 10 sprites in this exact order:\n" +
-             "Index 0 = CardCostFont (1)_0 (Light Cost 1)\n" +
-             "Index 1 = CardCostFont (1)_1 (Light Cost 2)\n" +
-             "...\n" +
-             "Index 8 = CardCostFont (1)_8 (Light Cost 9)\n" +
-             "Index 9 = CardCostFont (1)_9 (Light Cost 0)")]
     [SerializeField] private List<Sprite> lightCostSprites = new();
 
     [Header("Demo Data (replace with your real deck/hand)")]

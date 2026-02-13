@@ -29,4 +29,3 @@
   /* Allow card decorations and overlap to render */
   overflow: visible;
 }
-

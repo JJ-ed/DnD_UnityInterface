@@ -1,107 +1,91 @@
 .card {
-  width: 150px;
-  height: 200px;
+  width: 90px;
+  height: 120px;
   picking-mode: position;
   cursor: pointer;
   position: relative;
   overflow: visible;
 
   /* Content inset */
-  padding: 15px;
+  padding: 9px;
+  
 
-  scale: 0.75;
-  margin: -25px -19px;
-
-  /* Hover animation: scale from bottom-center so card lifts upward */
+  /* Hover animation */
   transform-origin: 50% 100%;
   translate: 0 0;
-
-  /* Smooth transitions for hover pop */
   transition-property: scale, translate;
   transition-duration: 150ms;
   transition-timing-function: ease-out;
 }
 
-.card--hover {
-  scale: 0.825;
-  translate: 0 -15px;
-}
-
-.card__bg,
-.card__overlay {
+.card__bg {
   position: absolute;
   picking-mode: ignore;
-}
-
-.card__bg {
-  left: -37px;
-  top: -20px;
+  left: -22px;
+  top: -12px;
   width: 160%;
   height: 113%;
 }
 
 .card__overlay {
-  left: 22px;
-  top: -5px;
+  position: absolute;
+  picking-mode: ignore;
+  left: 13px;
+  top: -3px;
   width: 85%;
   height: 90%;
 }
 
 .card__corner {
   position: absolute;
-  width: 32px;
-  height: 32px;
-
-  /* Don't block clicks */
+  width: 19px;
+  height: 19px;
   picking-mode: ignore;
 }
 
 .card__corner--tl {
-  left: 21px;
-  top: -30px;
+  left: 13px;
+  top: -18px;
   width: 75%;
   height: 80%;
 }
 
 .card__corner--br {
-  right: 11px;
+  right: 7px;
   bottom: 0px;
   width: 75%;
   height: 80%;
 }
-
 
 .card__header {
   position: relative;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
 .card__title {
   unity-font: url("project://database/Assets/Fonts/NANUMBARUNGOTHIC.ttf");
   unity-font-style: bold;
-  font-size: 12px;
-  top: 3.5px;
+  font-size: 7px;
+  top: 2px;
   rotate: -10deg;
   color: rgb(0, 0, 0);
   -unity-text-align: middle-center;
-  
+
   /* Banner width so centering is consistent */
   width: 75%;
   flex-grow: 0;
   margin-right: 0px;
-  margin-top: 8px;
+  margin-top: 5px;
 }
 
 .card__costIcon {
   position: absolute;
-  left: 25px;
+  left: 15px;
   top: 0px;
-  width: 24px;
-  height: 24px;
+  width: 14px;
+  height: 14px;
   rotate: -5deg;
-  picking-mode: ignore;
 }
-

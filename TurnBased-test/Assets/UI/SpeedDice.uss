@@ -1,0 +1,70 @@
+.speedDiceLayer {
+  /* Full-screen overlay that doesn't affect layout */
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  /* Let dice render outside bounds if needed */
+  overflow: visible;
+
+  /* Don't block clicks on underlying UI */
+  picking-mode: ignore;
+}
+
+.speedDice {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+
+  /* Let the images fill this box */
+  overflow: visible;
+
+  /* Allow hover detection on the dice itself */
+  picking-mode: position;
+}
+
+.speedDice__img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  scale: 0.75;
+  picking-mode: ignore;
+}
+
+#DiceBackground {
+  width: 130%;
+  height: 130%;
+  left: -13.5%;
+  top: -8.5%;
+  background: linear-gradient(180deg, #baa075, rgb(0, 0, 0));
+  --unity-image-tint-color: rgb(0, 0, 0);
+}
+
+#Dice {
+  --unity-image-tint-color: #ceb185;
+  opacity: 0.8;
+}
+
+#DiceLines {
+  --unity-image-tint-color: #baa075;
+  opacity: 0.8;
+  width: 60%;
+  height: 60%;
+  left: 21.5%;
+  top: 26.6%;
+}
+
+/* Hover */
+.speedDice:hover > #DiceBackground {
+  --unity-image-tint-color: #f7d89e;
+}
+
+.speedDice:hover > #Dice {
+  --unity-image-tint-color: #f7d89e;
+}
+
+

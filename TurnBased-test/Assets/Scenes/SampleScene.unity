@@ -546,6 +546,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &745648191 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1907948136953914913, guid: ac92dbc85516640858db687826e14d1e, type: 3}
+  m_PrefabInstance: {fileID: 1881306921}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1881306921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -603,6 +608,87 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac92dbc85516640858db687826e14d1e, type: 3}
+--- !u!1 &2133386610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2133386613}
+  - component: {fileID: 2133386612}
+  - component: {fileID: 2133386611}
+  m_Layer: 5
+  m_Name: SpeedDice
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2133386611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133386610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9060a06298394f3bbdd98567a2830ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpeedDiceView
+  target: {fileID: 745648191}
+  worldOffset: {x: 8.89, y: -1.8, z: 0}
+  worldCamera: {fileID: 0}
+  diceBackgroundSprite: {fileID: 2126503690810535601, guid: b30f406ffd2a24460a518785db2a5b28, type: 3}
+  diceSprite: {fileID: -8634648407668411138, guid: b30f406ffd2a24460a518785db2a5b28, type: 3}
+  diceLinesSprite: {fileID: -8360829141084495700, guid: b30f406ffd2a24460a518785db2a5b28, type: 3}
+  bgBaseTint: {r: 0, g: 0, b: 0, a: 1}
+  bgPulseTint: {r: 0.969, g: 0.847, b: 0.62, a: 1}
+  diceBaseTint: {r: 0.808, g: 0.694, b: 0.522, a: 1}
+  dicePulseTint: {r: 0.969, g: 0.847, b: 0.62, a: 1}
+  pulseDuration: 1.2
+  hideWhenBehindCamera: 1
+  bindRetryFrames: 10
+--- !u!114 &2133386612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133386610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: a3ed20a36c6a64ba49b02646ba043669, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 8f21bd573c85643378132d1015e22b7f, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!4 &2133386613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133386610}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8329609803689758200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -670,3 +756,4 @@ SceneRoots:
   - {fileID: 1881306921}
   - {fileID: 8329609803689758200}
   - {fileID: 686908205}
+  - {fileID: 2133386613}

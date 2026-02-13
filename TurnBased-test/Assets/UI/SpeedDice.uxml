@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/SpeedDice.uss" />
+
+    <ui:VisualElement name="SpeedDiceLayer" class="speedDiceLayer">
+        <ui:VisualElement name="SpeedDice" class="speedDice">
+            <ui:Image name="DiceBackground" class="speedDice__img" />
+            <ui:Image name="Dice" class="speedDice__img" />
+            <ui:Image name="DiceLines" class="speedDice__img" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
+
