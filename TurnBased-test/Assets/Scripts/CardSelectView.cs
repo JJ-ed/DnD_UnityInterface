@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-/// - The card is a VisualElement
-/// - Styling for hover/selected is done via USS classes.
+// - The card is a VisualElement and a USS class for hover/selected.
 [RequireComponent(typeof(UIDocument))]
 public sealed class CardSelectView : MonoBehaviour
 {
@@ -221,10 +220,8 @@ public sealed class CardSelectView : MonoBehaviour
         else _card.RemoveFromClassList(SelectedClass);
     }
 
-    /// <summary>
-    /// Sets a Sprite on a UI Toolkit Image element.
-    /// Uses Image.sprite when available; otherwise falls back to Image.image (Texture2D).
-    /// </summary>
+ // Sets a Sprite on a UI Toolkit Image element.
+ // Uses Image.sprite when available; otherwise falls back to Image.image (Texture2D).
     private static void SetImageSprite(Image? image, Sprite? sprite)
     {
         if (image == null) return;
