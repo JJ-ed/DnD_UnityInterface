@@ -40,9 +40,8 @@
   height: 120%;
   left: -10.5%;
   top: -8.5%;
-  background: linear-gradient(180deg, #baa075, rgb(0, 0, 0));
   --unity-image-tint-color: rgb(0, 0, 0);
-}
+}   
 
 #Dice {
   --unity-image-tint-color: #ceb185;
@@ -56,9 +55,159 @@
   height: 60%;
   left: 21.5%;
   top: 26.6%;
+  z-index: 1;
 }
 
 /* Hover */
 .speedDice:hover > #Dice {
   --unity-image-tint-color: #f7d89e;
+}
+
+/* Roulette Animation (Unfinished / would work on it real soon) */
+.speedDice__rouletteClip {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  left: 21.5%;
+  top: 26.6%;
+  overflow: hidden;
+  picking-mode: ignore;
+}
+
+.speedDice__roulette {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  picking-mode: ignore;
+  scale: 9;
+  opacity: 0.3;
+}
+
+/* Speed digits, each digit is positioned independently */
+.speedDice__digit {
+  position: absolute;
+  picking-mode: ignore;
+  --unity-image-tint-color: #baa075;
+  z-index: 2; /* above DiceLines */
+}
+
+/*
+Per-digit tweak hooks:
+`SpeedDiceView` adds classes to each digit image:
+- `#SpeedOnes` gets `ones--0` .. `ones--9`
+- `#SpeedTens` gets `tens--0` .. `tens--9` (only when tens is visible)
+*/
+
+/* Default Dice layouts */
+#SpeedOnes.ones--0 { 
+    width: 22%; 
+    height: 22%; 
+    left: 40%; 
+    top: 40%; 
+}
+
+#SpeedOnes.ones--1 { 
+    width: 23%; 
+    height: 23%; 
+    left: 38%; 
+    top: 40%; 
+}
+
+#SpeedOnes.ones--2 { 
+    width: 23%; 
+    height: 23%; 
+    left: 38.5%; 
+    top: 39%; 
+}
+
+#SpeedOnes.ones--3 { 
+    width: 26%; 
+    height: 26%; 
+    left: 38%; 
+    top: 39%; 
+}
+
+#SpeedOnes.ones--4 { 
+    width: 22%; 
+    height: 22%; 
+    left: 38.5%; 
+    top: 40%; 
+}
+
+#SpeedOnes.ones--5 { 
+    width: 25.5%; 
+    height: 25.5%; 
+    left: 38%; 
+    top: 39%; 
+}
+
+#SpeedOnes.ones--6 { 
+    width: 24%; 
+    height: 24%; 
+    left: 38%; 
+    top: 39%; 
+}
+
+#SpeedOnes.ones--7 { 
+    width: 24%; 
+    height: 24%; 
+    left: 39.5%; 
+    top: 40%; 
+}
+
+#SpeedOnes.ones--8 { 
+    width: 22%; 
+    height: 22%; 
+    left: 40%; 
+    top: 40%; 
+}
+
+#SpeedOnes.ones--9 { 
+    width: 22%; 
+    height: 22%; 
+    left: 40%; 
+    top: 40%; 
+}
+
+/*10*/
+#SpeedDice.speed--10 #SpeedTens { 
+    width: 22%; 
+    height: 22%; 
+    left: 30%; 
+    top: 40%; 
+}
+
+#SpeedDice.speed--10 #SpeedOnes { 
+    margin-left: 5%;
+}
+
+/*11*/
+#SpeedDice.speed--11 #SpeedTens { 
+    width: 22%; 
+    height: 22%; 
+    left: 35%; 
+    top: 40%; 
+}
+
+#SpeedDice.speed--11 #SpeedOnes {
+    width: 22%; 
+    height: 22%;
+    left: 42%; 
+    top: 40%;   
+    margin-left: 2%;
+}
+
+/*12*/
+#SpeedDice.speed--12 #SpeedTens { 
+    width: 22%; 
+    height: 22%; 
+    left: 30%; 
+    top: 40%; 
+}
+
+#SpeedDice.speed--12 #SpeedOnes { 
+    width: 21%; 
+    height: 21%;
+    margin-left: 5%;
 }

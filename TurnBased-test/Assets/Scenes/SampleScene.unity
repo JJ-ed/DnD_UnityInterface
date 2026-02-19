@@ -226,7 +226,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 13.5
+  orthographic size: 25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -481,6 +481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 718402344}
   - component: {fileID: 718402343}
+  - component: {fileID: 718402345}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -513,7 +514,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 34
-    OrthographicSize: 13.5
+    OrthographicSize: 25
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -546,6 +547,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &718402345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718402342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a0b2b3c4d5e6f7890a1b2c3d4e5f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraZoomController
+  targetCamera: {fileID: 519420031}
+  targetCinemachineCamera: {fileID: 718402343}
+  autoFindTargets: 1
+  mouseWheelSensitivity: 12
+  invertMouseWheel: 0
+  useUnscaledTime: 1
+  minOrthographicSize: 12.5
+  maxOrthographicSize: 25
+  smooth: 1
+  smoothTime: 0.08
 --- !u!4 &745648191 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1907948136953914913, guid: ac92dbc85516640858db687826e14d1e, type: 3}
@@ -640,17 +663,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpeedDiceView
   target: {fileID: 745648191}
   worldOffset: {x: 8.89, y: -1.8, z: 0}
-  worldCamera: {fileID: 0}
+  scaleWithCameraZoom: 1
+  referenceOrthographicSize: 13.5
+  zoomScaleClamp: {x: 0.6, y: 1.6}
   diceBackgroundSprite: {fileID: 2126503690810535601, guid: b30f406ffd2a24460a518785db2a5b28, type: 3}
-  diceSprite: {fileID: -8634648407668411138, guid: b30f406ffd2a24460a518785db2a5b28, type: 3}
-  diceLinesSprite: {fileID: -8360829141084495700, guid: b30f406ffd2a24460a518785db2a5b28, type: 3}
-  bgBaseTint: {r: 0, g: 0, b: 0, a: 1}
-  bgPulseTint: {r: 0.969, g: 0.847, b: 0.62, a: 1}
-  diceBaseTint: {r: 0.808, g: 0.694, b: 0.522, a: 1}
-  dicePulseTint: {r: 0.969, g: 0.847, b: 0.62, a: 1}
-  pulseDuration: 1.2
-  hideWhenBehindCamera: 1
-  bindRetryFrames: 10
+  diceSprite: {fileID: 4829161311293996299, guid: 01df5ffb0eee84c949db882b78f6c909, type: 3}
+  diceLinesSprite: {fileID: -2185493843412862122, guid: 01df5ffb0eee84c949db882b78f6c909, type: 3}
+  diceRouletteSprite: {fileID: 0}
+  minSpeed: 11
+  maxSpeed: 11
+  speedDigitSprites:
+  - {fileID: -4167172091139399991, guid: 7d2ae22e6ca6a40eb8faa9f45a464bc6, type: 3}
+  - {fileID: 5788299898937059849, guid: 5176e6d4fb315428a96178e4317aab1e, type: 3}
+  - {fileID: -9050523206056489659, guid: 3368685eaaf0c4e8586f8363b1a52ecb, type: 3}
+  - {fileID: 7505717552885524384, guid: d1298b9a28d88489b9c0c8382953f479, type: 3}
+  - {fileID: 7757877854261083324, guid: 08167a7852f8447f3b6d58ac99eabe14, type: 3}
+  - {fileID: 1574253917119275423, guid: eacd21d0133ef48edb392da629d3d03c, type: 3}
+  - {fileID: -4774157339844773381, guid: fa97419497536422a89f0c908df2cbf2, type: 3}
+  - {fileID: -7637916108346015001, guid: cd5338a94f87c4645a41c6cbfe49a5d9, type: 3}
+  - {fileID: 8718025384866354299, guid: 848f86edcb4ab4f15b1b1fd762fd2e93, type: 3}
+  - {fileID: 6222807517978557563, guid: 6163187aedc90482e8e3ff4b9c1812cd, type: 3}
+  fallDuration: 1.5
 --- !u!114 &2133386612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,8 +784,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 619394802}
   - {fileID: 718402344}
+  - {fileID: 619394802}
   - {fileID: 1881306921}
   - {fileID: 8329609803689758200}
   - {fileID: 686908205}

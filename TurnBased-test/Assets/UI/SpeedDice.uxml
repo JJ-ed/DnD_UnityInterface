@@ -5,6 +5,14 @@
         <ui:VisualElement name="SpeedDice" class="speedDice">
             <ui:Image name="DiceBackground" class="speedDice__img" />
             <ui:Image name="Dice" class="speedDice__img" />
+
+            <ui:VisualElement name="DiceRouletteClip" class="speedDice__rouletteClip">
+                <ui:Image name="DiceRoulette" class="speedDice__roulette" />
+            </ui:VisualElement>
+
+            <ui:Image name="SpeedTens" class="speedDice__digit" />
+            <ui:Image name="SpeedOnes" class="speedDice__digit" />
+            
             <ui:Image name="DiceLines" class="speedDice__img" />
         </ui:VisualElement>
     </ui:VisualElement>
