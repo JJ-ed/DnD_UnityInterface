@@ -130,7 +130,7 @@ Per-digit tweak hooks:
 - `#SpeedTens` gets `tens--0` .. `tens--9` (only when tens is visible)
 */
 
-/* Default Dice layouts */
+/* Dice layouts */
 #SpeedOnes.ones--0 { 
     width: 22%; 
     height: 22%; 
@@ -201,7 +201,6 @@ Per-digit tweak hooks:
     top: 40%; 
 }
 
-/*10*/
 #SpeedDice.speed--10 #SpeedTens { 
     width: 22%; 
     height: 22%; 
@@ -213,7 +212,6 @@ Per-digit tweak hooks:
     margin-left: 5%;
 }
 
-/*11*/
 #SpeedDice.speed--11 #SpeedTens { 
     width: 22%; 
     height: 22%; 
@@ -229,16 +227,132 @@ Per-digit tweak hooks:
     margin-left: 2%;
 }
 
-/*12*/
 #SpeedDice.speed--12 #SpeedTens { 
-    width: 22%; 
-    height: 22%; 
-    left: 30%; 
-    top: 40%; 
+    width: 19.5%; 
+    height: 19.5%; 
+    left: 34%; 
+    top: 41%; 
 }
 
 #SpeedDice.speed--12 #SpeedOnes { 
-    width: 21%; 
-    height: 21%;
+    width: 20%; 
+    height: 20%;
+    left: 40%; 
+    top: 41%; 
     margin-left: 5%;
+}
+
+#SpeedDice.speed--13 #SpeedTens { 
+    width: 22%; 
+    height: 22%; 
+    left: 34%; 
+    top: 40%; 
+}
+
+#SpeedDice.speed--13 #SpeedOnes { 
+    width: 23%; 
+    height: 23%; 
+    top: 40%; 
+    margin-left: 8%;
+}
+
+#SpeedDice.speed--14 #SpeedTens { 
+    width: 22%; 
+    height: 22%; 
+    left: 32%; 
+    top: 40%; 
+}
+
+#SpeedDice.speed--14 #SpeedOnes {
+    width: 22%; 
+    height: 22%;
+    top: 40%;   
+    margin-left: 5%;
+}
+
+#SpeedDice.speed--15 #SpeedTens { 
+    width: 21.8%; 
+    height: 21.8%; 
+    left: 34%; 
+    top: 41%; 
+}
+
+#SpeedDice.speed--15 #SpeedOnes {
+    width: 23%; 
+    height: 23%;
+    top: 41%;   
+    margin-left: 6%;
+}
+
+#SpeedDice.speed--16 #SpeedTens { 
+    width: 22%; 
+    height: 22%; 
+    left: 31.5%; 
+    top: 40%; 
+}
+
+#SpeedDice.speed--16 #SpeedOnes { 
+    width: 23%; 
+    height: 23%; 
+    top: 40%; 
+    margin-left: 8.5%;
+}
+
+#SpeedDice.speed--17 #SpeedTens { 
+    width: 22%; 
+    height: 22%; 
+    left: 32.5%; 
+    top: 40%; 
+}
+
+#SpeedDice.speed--17 #SpeedOnes { 
+    width: 23%; 
+    height: 23%; 
+    top: 40%; 
+    margin-left: 4.5%;
+}
+
+#SpeedDice.speed--18 #SpeedTens { 
+    width: 22%; 
+    height: 22%; 
+    left: 33%; 
+    top: 40%; 
+}
+
+#SpeedDice.speed--18 #SpeedOnes {
+    width: 22%; 
+    height: 22%;
+    left: 42%; 
+    top: 40%;   
+    margin-left: 2%;
+}
+
+#SpeedDice.speed--19 #SpeedTens { 
+    width: 22%; 
+    height: 22%; 
+    left: 32%; 
+    top: 40%; 
+}
+
+#SpeedDice.speed--19 #SpeedOnes {
+    width: 22%; 
+    height: 22%;
+    left: 42%; 
+    top: 40%;   
+    margin-left: 2%;
+}
+
+#SpeedDice.speed--20 #SpeedTens { 
+    width: 21%; 
+    height: 21%; 
+    left: 32%; 
+    top: 40%; 
+}
+
+#SpeedDice.speed--20 #SpeedOnes {
+    width: 22%; 
+    height: 22%;
+    left: 44.5%; 
+    top: 40%;   
+    margin-left: 2%;
 }
