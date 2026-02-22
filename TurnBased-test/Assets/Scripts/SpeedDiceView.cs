@@ -1,4 +1,6 @@
+using System;
 using System.Reflection;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -6,7 +8,9 @@ using UnityEngine.UIElements;
 public sealed class SpeedDiceView : MonoBehaviour
 {
     // UXML element names
+    private const string SpeedDiceStackElementName = "SpeedDiceStack";
     private const string SpeedDiceElementName = "SpeedDice";
+    private const string SpeedDiceRowPrefix = "SpeedDiceRow";
 
     private const string DiceBackgroundElementName = "DiceBackground";
     private const string DiceElementName = "Dice";
@@ -16,10 +20,11 @@ public sealed class SpeedDiceView : MonoBehaviour
     private const string SpeedTensElementName = "SpeedTens";
     private const string SpeedOnesElementName = "SpeedOnes";
 
-    // USS classes (for per-speed styling in SpeedDice.uss)
+    // USS classes 
     private const string SpeedClassPrefix = "speed--";
     private const string OnesClassPrefix = "ones--";
     private const string TensClassPrefix = "tens--";
+    private const string StackedClass = "speedDice--stacked";
 
     [Header("World Target")]
     [Tooltip("World-space Transform to track (typically the Player).")]
@@ -58,6 +63,20 @@ public sealed class SpeedDiceView : MonoBehaviour
     [Tooltip("Maximum speed (inclusive).")]
     [SerializeField] private int maxSpeed = 9;
 
+    [Header("Stack")]
+    [SerializeField, Range(1, 28)] private int diceCount = 1;
+
+    [Header("Stack Offsets")]
+    [SerializeField] private Vector2 offsetFor1Layer = new(8.4f, -12.4f);
+    [Tooltip("Panel-space offset applied to the whole stack when 2 rows are visible.")]
+    [SerializeField] private Vector2 offsetFor2Layers = new(8.4f, -7.55f);
+    [Tooltip("Panel-space offset applied to the whole stack when 3 rows are visible.")]
+    [SerializeField] private Vector2 offsetFor3Layers = new(8.4f, -3.43f);
+    [Tooltip("Panel-space offset applied to the whole stack when 4 rows are visible.")]
+    [SerializeField] private Vector2 offsetFor4Layers = new(8.4f, -0.27f);
+    [Tooltip("Panel-space offset applied to the whole stack when 5 rows are visible.")]
+    [SerializeField] private Vector2 offsetFor5Layers = new(8.4f, 2.75f);
+
     [SerializeField] private System.Collections.Generic.List<Sprite> speedDigitSprites = new();
 
     [Header("Roulette Animation")]
@@ -65,29 +84,42 @@ public sealed class SpeedDiceView : MonoBehaviour
 
     private const bool HideWhenBehindCamera = true;
     private const int BindRetryFrames = 10;
+    private const int MaxDice = 28;
+    private const int RowCount = 5;
+    private static readonly int[] RowPattern = { 6, 5, 6, 5, 6 };
 
-    private VisualElement? _diceRoot;
-    private Image? _diceBackground;
-    private Image? _dice;
-    private Image? _diceLines;
-    
-    private Image? _diceRoulette;
-    private Image? _speedTens;
-    private Image? _speedOnes;
+    private sealed class DiceUI
+    {
+        public VisualElement Root = null!;
+        public Image? DiceBackground;
+        public Image? Dice;
+        public Image? DiceLines;
+        public Image? DiceRoulette;
+        public Image? SpeedTens;
+        public Image? SpeedOnes;
+
+        public int CurrentSpeed = -1;
+        public string? LastSpeedClass;
+        public string? LastOnesClass;
+        public string? LastTensClass;
+    }
+
+    private readonly List<DiceUI> _dice = new();
+    private VisualElement? _stackRoot;
+    private readonly List<VisualElement> _rows = new();
+    private int _activeLayerCount = 1;
     private float _fallTimer;
 
     private VisualElement? _uiRoot;
     private int _remainingBindRetries;
     private bool _bound;
-    private int _currentSpeed = -1;
-    private string? _lastSpeedClass;
-    private string? _lastOnesClass;
-    private string? _lastTensClass;
+    private bool _speedsInitialized;
 
     private void OnEnable()
     {
         _remainingBindRetries = BindRetryFrames;
         _bound = false;
+        _speedsInitialized = false;
 
         var root = GetComponent<UIDocument>().rootVisualElement;
         _uiRoot = root;
@@ -100,9 +132,7 @@ public sealed class SpeedDiceView : MonoBehaviour
         root.style.bottom = 0;
         root.pickingMode = PickingMode.Ignore;
 
-        // Default to a rolled speed on enable. If some other system sets speed later, it can call SetSpeed/RollSpeed again.
-        // Could be VERY helpful too in future functions or debugging.
-        RollSpeed();
+        // Speeds are initialized after we bind (when dice instances exist).
         TryBindOrRetry();
     }
 
@@ -111,32 +141,17 @@ public sealed class SpeedDiceView : MonoBehaviour
         // Two-digit display (0-99).
         minSpeed = Mathf.Clamp(minSpeed, 0, 99);
         maxSpeed = Mathf.Clamp(maxSpeed, 0, 99);
+        diceCount = Mathf.Clamp(diceCount, 1, MaxDice);
     }
 
     private void Update()
     {
-        if (!_bound || _diceRoot == null) return;
-
-        // Keep sprites in sync (supports live tweaking in Inspector).
-        SetImageSprite(_diceBackground, diceBackgroundSprite);
-        SetImageSprite(_dice, diceSprite);
-        SetImageSprite(_diceLines, diceLinesSprite);
-
-        // Animate roulette falling: top goes from -100% to +100%, then resets.
-        if (_diceRoulette != null && diceRouletteSprite != null)
-        {
-            _fallTimer += Time.deltaTime / Mathf.Max(fallDuration, 0.01f);
-            _fallTimer %= 1f;
-
-            // Lerp from -100% (above clip) to +100% (below clip).
-            var topPercent = Mathf.Lerp(-100f, 100f, _fallTimer);
-            _diceRoulette.style.top = new Length(topPercent, LengthUnit.Percent);
-        }
+        if (!_bound || _stackRoot == null) return;
 
         var cam = Camera.main;
         if (cam == null || target == null)
         {
-            _diceRoot.style.display = DisplayStyle.None;
+            _stackRoot.style.display = DisplayStyle.None;
             return;
         }
 
@@ -145,14 +160,37 @@ public sealed class SpeedDiceView : MonoBehaviour
 
         if (HideWhenBehindCamera && screenPos.z < 0f)
         {
-            _diceRoot.style.display = DisplayStyle.None;
+            _stackRoot.style.display = DisplayStyle.None;
             return;
         }
 
-        if (_diceRoot.panel == null)
+        if (_stackRoot.panel == null)
             return;
 
-        _diceRoot.style.display = DisplayStyle.Flex;
+        _stackRoot.style.display = DisplayStyle.Flex;
+
+        // Keep sprites in sync (supports live tweaking in Inspector).
+        foreach (var die in _dice)
+        {
+            SetImageSprite(die.DiceBackground, diceBackgroundSprite);
+            SetImageSprite(die.Dice, diceSprite);
+            SetImageSprite(die.DiceLines, diceLinesSprite);
+            SetImageSpriteOnly(die.DiceRoulette, diceRouletteSprite);
+        }
+
+        // Animate roulette falling: top goes from -100% to +100%, then resets (applies to all dice).
+        if (diceRouletteSprite != null)
+        {
+            _fallTimer += Time.deltaTime / Mathf.Max(fallDuration, 0.01f);
+            _fallTimer %= 1f;
+
+            var topPercent = Mathf.Lerp(-100f, 100f, _fallTimer);
+            foreach (var die in _dice)
+            {
+                if (die.DiceRoulette != null)
+                    die.DiceRoulette.style.top = new Length(topPercent, LengthUnit.Percent);
+            }
+        }
 
         // Scale the dice based on camera zoom
         if (scaleWithCameraZoom && cam.orthographic)
@@ -162,20 +200,21 @@ public sealed class SpeedDiceView : MonoBehaviour
             var safeOrtho = Mathf.Max(cam.orthographicSize, 0.001f);
             var scale = safeRef / safeOrtho;
             scale = Mathf.Clamp(scale, zoomScaleClamp.x, zoomScaleClamp.y);
-            _diceRoot.style.scale = new StyleScale(new Scale(new Vector3(scale, scale, 1f)));
+            _stackRoot.style.scale = new StyleScale(new Scale(new Vector3(scale, scale, 1f)));
         }
         else
         {
-            _diceRoot.style.scale = new StyleScale(new Scale(Vector3.one));
+            _stackRoot.style.scale = new StyleScale(new Scale(Vector3.one));
         }
 
         // Convert Unity screen coords into panel coords.
-        var panelPos = RuntimePanelUtils.ScreenToPanel(_diceRoot.panel, new Vector2(screenPos.x, screenPos.y));
+        var panelPos = RuntimePanelUtils.ScreenToPanel(_stackRoot.panel, new Vector2(screenPos.x, screenPos.y));
+        var offset = GetOffsetForLayers(_activeLayerCount);
 
         // Place the element centered horizontally, sitting above the point.
-        _diceRoot.style.left = panelPos.x;
-        _diceRoot.style.top = panelPos.y;
-        _diceRoot.style.translate = new Translate(
+        _stackRoot.style.left = panelPos.x + offset.x;
+        _stackRoot.style.top = panelPos.y + offset.y;
+        _stackRoot.style.translate = new Translate(
             new Length(-50f, LengthUnit.Percent),
             new Length(-100f, LengthUnit.Percent),
             0f);
@@ -202,90 +241,261 @@ public sealed class SpeedDiceView : MonoBehaviour
     private bool TryBind(VisualElement root)
     {
         // The UIDocument loads SpeedDice.uxml directly, so the element is already in the tree.
-        _diceRoot = root.Q<VisualElement>(SpeedDiceElementName);
-        if (_diceRoot == null) return false;
+        _stackRoot = root.Q<VisualElement>(SpeedDiceStackElementName);
+        if (_stackRoot == null) return false;
 
-        _diceBackground = _diceRoot.Q<Image>(DiceBackgroundElementName);
-        _dice = _diceRoot.Q<Image>(DiceElementName);
-        _diceLines = _diceRoot.Q<Image>(DiceLinesElementName);
-        _diceRoulette = _diceRoot.Q<Image>(DiceRouletteElementName);
+        _stackRoot.pickingMode = PickingMode.Ignore;
 
-        _speedTens = _diceRoot.Q<Image>(SpeedTensElementName);
-        _speedOnes = _diceRoot.Q<Image>(SpeedOnesElementName);
+        // Bind row containers (fixed 5 rows).
+        _rows.Clear();
+        for (var i = 0; i < RowCount; i++)
+        {
+            var row = _stackRoot.Q<VisualElement>(SpeedDiceRowPrefix + i);
+            if (row == null) return false;
+            row.pickingMode = PickingMode.Ignore;
+            _rows.Add(row);
+        }
 
-        // Allow hover on the dice root; children pass events up to it.
-        _diceRoot.pickingMode = PickingMode.Position;
-        if (_diceBackground != null) _diceBackground.pickingMode = PickingMode.Ignore;
-        if (_dice != null) _dice.pickingMode = PickingMode.Ignore;
-        if (_diceLines != null) _diceLines.pickingMode = PickingMode.Ignore;
+        // Prototype die exists in row 0.
+        var prototype = _rows[0].Q<VisualElement>(SpeedDiceElementName);
+        if (prototype == null) return false;
 
-        if (_diceRoulette != null) _diceRoulette.pickingMode = PickingMode.Ignore;
+        _dice.Clear();
+        _dice.Add(BindDie(prototype));
 
-        if (_speedTens != null) _speedTens.pickingMode = PickingMode.Ignore;
-        if (_speedOnes != null) _speedOnes.pickingMode = PickingMode.Ignore;
-
-        // Set sprites once at bind time (Update keeps them in sync for Inspector tweaking).
-        SetImageSprite(_diceBackground, diceBackgroundSprite);
-        SetImageSprite(_dice, diceSprite);
-        SetImageSprite(_diceLines, diceLinesSprite);
-        SetImageSpriteOnly(_diceRoulette, diceRouletteSprite);
-        SyncSpeedDigits();
-        SyncSpeedClass();
-        EnforceLayerOrder();
-
+        EnsureDiceCount();
+        EnsureSpeedsInitialized();
+        ApplyAllSpeedsToUi();
         return true;
     }
 
-    //Set the current speed explicitly (clamped to 0-99 for 2-digit display).
-    public void SetSpeed(int speed)
+    //Rolls all dice in the stack and updates their UI
+    public void RollAllSpeeds()
     {
-        _currentSpeed = Mathf.Clamp(speed, 0, 99);
-        SyncSpeedDigits();
-        SyncSpeedClass();
-        EnforceLayerOrder();
-    }
-
-    //Roll speed using min/max (inclusive) and update the icon.
-    public int RollSpeed()
-    {
+        if (_dice.Count == 0) return;
         var min = Mathf.Min(minSpeed, maxSpeed);
         var max = Mathf.Max(minSpeed, maxSpeed);
-        var rolled = UnityEngine.Random.Range(min, max + 1); // inclusive upper bound for ints
-        SetSpeed(rolled);
-        return _currentSpeed;
+
+        // Generate then sort descending so the stack reads high-to-low
+        // in display order (top->bottom, left->right).
+        var speeds = new List<int>(_dice.Count);
+        for (var i = 0; i < _dice.Count; i++)
+        {
+            var rolled = UnityEngine.Random.Range(min, max + 1);
+            speeds.Add(Mathf.Clamp(rolled, 0, 99));
+        }
+
+        speeds.Sort((a, b) => b.CompareTo(a)); // descending
+        for (var i = 0; i < _dice.Count; i++)
+            _dice[i].CurrentSpeed = speeds[i];
+
+        ApplyAllSpeedsToUi();
     }
 
-    private void SyncSpeedDigits()
+    private void EnsureSpeedsInitialized()
     {
-        if (_speedOnes == null) return;
+        if (_speedsInitialized) return;
+        if (_dice.Count == 0) return;
 
-        var speed = Mathf.Clamp(_currentSpeed, 0, 99);
+        var min = Mathf.Min(minSpeed, maxSpeed);
+        var max = Mathf.Max(minSpeed, maxSpeed);
+
+        // Initialize all dice once, then sort descending to match display order.
+        var speeds = new List<int>(_dice.Count);
+        for (var i = 0; i < _dice.Count; i++)
+        {
+            var rolled = UnityEngine.Random.Range(min, max + 1);
+            speeds.Add(Mathf.Clamp(rolled, 0, 99));
+        }
+
+        speeds.Sort((a, b) => b.CompareTo(a)); // descending
+        for (var i = 0; i < _dice.Count; i++)
+            _dice[i].CurrentSpeed = speeds[i];
+
+        _speedsInitialized = true;
+    }
+
+    private void EnsureDiceCount()
+    {
+        if (_stackRoot == null) return;
+        if (_rows.Count != RowCount) return;
+        var desired = Mathf.Clamp(diceCount, 1, MaxDice);
+
+        // Remove extras.
+        for (var i = _dice.Count - 1; i >= desired; i--)
+        {
+            var die = _dice[i];
+            die.Root.RemoveFromHierarchy();
+            _dice.RemoveAt(i);
+        }
+
+        // Add missing.
+        while (_dice.Count < desired)
+        {
+            var dieRoot = CreateDieElement();
+            // Added to a row below (after we clear + distribute).
+            _dice.Add(BindDie(dieRoot));
+        }
+
+        // Rebuild row contents deterministically (6/5/6/5/6).
+        for (var r = 0; r < _rows.Count; r++)
+            _rows[r].Clear();
+
+        var dieIndex = 0;
+        _activeLayerCount = 0;
+        for (var rowIndex = 0; rowIndex < RowCount && dieIndex < desired; rowIndex++)
+        {
+            var rowCap = RowPattern[rowIndex];
+            var countInRow = Mathf.Min(rowCap, desired - dieIndex);
+
+            _rows[rowIndex].style.display = countInRow > 0 ? DisplayStyle.Flex : DisplayStyle.None;
+            if (countInRow > 0) _activeLayerCount = rowIndex + 1;
+
+            for (var j = 0; j < countInRow; j++)
+            {
+                var die = _dice[dieIndex++];
+                _rows[rowIndex].Add(die.Root);
+
+                // Overlap all but the first die in the row.
+                if (j == 0) die.Root.RemoveFromClassList(StackedClass);
+                else die.Root.AddToClassList(StackedClass);
+            }
+        }
+
+        // Hide any remaining empty rows after the last used row.
+        for (var rowIndex = _activeLayerCount; rowIndex < RowCount; rowIndex++)
+            _rows[rowIndex].style.display = DisplayStyle.None;
+
+        _activeLayerCount = Mathf.Clamp(_activeLayerCount, 1, RowCount);
+    }
+
+    private Vector2 GetOffsetForLayers(int layers)
+    {
+        return layers switch
+        {
+            5 => offsetFor5Layers,
+            4 => offsetFor4Layers,
+            3 => offsetFor3Layers,
+            2 => offsetFor2Layers,
+            _ => offsetFor1Layer
+        };
+    }
+
+    private static VisualElement CreateDieElement()
+    {
+        var dieRoot = new VisualElement { name = SpeedDiceElementName };
+        dieRoot.AddToClassList("speedDice");
+
+        var diceBackground = new Image { name = DiceBackgroundElementName };
+        diceBackground.AddToClassList("speedDice__img");
+
+        var dice = new Image { name = DiceElementName };
+        dice.AddToClassList("speedDice__img");
+
+        var rouletteClip = new VisualElement { name = "DiceRouletteClip" };
+        rouletteClip.AddToClassList("speedDice__rouletteClip");
+
+        var roulette = new Image { name = DiceRouletteElementName };
+        roulette.AddToClassList("speedDice__roulette");
+        rouletteClip.Add(roulette);
+
+        var speedTens = new Image { name = SpeedTensElementName };
+        speedTens.AddToClassList("speedDice__digit");
+
+        var speedOnes = new Image { name = SpeedOnesElementName };
+        speedOnes.AddToClassList("speedDice__digit");
+
+        var diceLines = new Image { name = DiceLinesElementName };
+        diceLines.AddToClassList("speedDice__img");
+
+        dieRoot.Add(diceBackground);
+        dieRoot.Add(dice);
+        dieRoot.Add(rouletteClip);
+        dieRoot.Add(speedTens);
+        dieRoot.Add(speedOnes);
+        dieRoot.Add(diceLines);
+
+        return dieRoot;
+    }
+
+    private DiceUI BindDie(VisualElement dieRoot)
+    {
+        var die = new DiceUI { Root = dieRoot };
+        dieRoot.pickingMode = PickingMode.Position;
+
+        die.DiceBackground = dieRoot.Q<Image>(DiceBackgroundElementName);
+        die.Dice = dieRoot.Q<Image>(DiceElementName);
+        die.DiceLines = dieRoot.Q<Image>(DiceLinesElementName);
+        die.DiceRoulette = dieRoot.Q<Image>(DiceRouletteElementName);
+        die.SpeedTens = dieRoot.Q<Image>(SpeedTensElementName);
+        die.SpeedOnes = dieRoot.Q<Image>(SpeedOnesElementName);
+
+        if (die.DiceBackground != null) die.DiceBackground.pickingMode = PickingMode.Ignore;
+        if (die.Dice != null) die.Dice.pickingMode = PickingMode.Ignore;
+        if (die.DiceLines != null) die.DiceLines.pickingMode = PickingMode.Ignore;
+        if (die.DiceRoulette != null) die.DiceRoulette.pickingMode = PickingMode.Ignore;
+        if (die.SpeedTens != null) die.SpeedTens.pickingMode = PickingMode.Ignore;
+        if (die.SpeedOnes != null) die.SpeedOnes.pickingMode = PickingMode.Ignore;
+
+        return die;
+    }
+
+    private void ApplyAllSpeedsToUi()
+    {
+        for (var i = 0; i < _dice.Count; i++)
+        {
+            SetDieSpeed(_dice[i], Mathf.Clamp(_dice[i].CurrentSpeed, 0, 99));
+        }
+    }
+
+    private void SetDieSpeed(DiceUI die, int speed)
+    {
+        die.CurrentSpeed = speed;
+
+        // Digits.
+        if (die.SpeedOnes == null) return;
         var tens = speed / 10;
         var ones = speed % 10;
 
-        // Ones always shown.
-        ApplyDigitToImage(_speedOnes, ones);
-        SyncDigitClass(_speedOnes, OnesClassPrefix, ones, ref _lastOnesClass);
+        ApplyDigitToImage(die.SpeedOnes, ones);
+        SyncDigitClass(die.SpeedOnes, OnesClassPrefix, ones, ref die.LastOnesClass);
 
-        // Tens only for 10+.
-        if (_speedTens != null)
+        if (die.SpeedTens != null)
         {
             if (speed >= 10)
             {
-                ApplyDigitToImage(_speedTens, tens);
-                SyncDigitClass(_speedTens, TensClassPrefix, tens, ref _lastTensClass);
+                ApplyDigitToImage(die.SpeedTens, tens);
+                SyncDigitClass(die.SpeedTens, TensClassPrefix, tens, ref die.LastTensClass);
             }
             else
             {
-                SetImageSprite(_speedTens, null);
-                SyncDigitClass(_speedTens, TensClassPrefix, null, ref _lastTensClass);
+                SetImageSprite(die.SpeedTens, null);
+                SyncDigitClass(die.SpeedTens, TensClassPrefix, null, ref die.LastTensClass);
             }
         }
+
+        // speed--NN class on the die root for pair-specific tweaks (e.g. speed--10).
+        if (!string.IsNullOrEmpty(die.LastSpeedClass))
+            die.Root.RemoveFromClassList(die.LastSpeedClass);
+        die.LastSpeedClass = SpeedClassPrefix + speed;
+        die.Root.AddToClassList(die.LastSpeedClass);
+
+        EnforceDieLayerOrder(die);
+    }
+
+    private static void EnforceDieLayerOrder(DiceUI die)
+    {
+        // Desired order (back -> front) within each die: roulette, lines, digits
+        if (die.DiceRoulette != null) die.DiceRoulette.SendToBack();
+        if (die.DiceLines != null && die.SpeedTens != null) die.DiceLines.PlaceBehind(die.SpeedTens);
+        if (die.DiceLines != null && die.SpeedOnes != null) die.DiceLines.PlaceBehind(die.SpeedOnes);
+
+        if (die.SpeedTens != null) die.SpeedTens.BringToFront();
+        if (die.SpeedOnes != null) die.SpeedOnes.BringToFront();
     }
 
     private static void SyncDigitClass(Image image, string prefix, int? digit, ref string? lastClass)
     {
-        // Remove old digit class.
         if (!string.IsNullOrEmpty(lastClass))
             image.RemoveFromClassList(lastClass);
 
@@ -304,46 +514,6 @@ public sealed class SpeedDiceView : MonoBehaviour
 
         lastClass = prefix + d;
         image.AddToClassList(lastClass);
-    }
-
-    // Ensure DiceLines stays visually above the speed icon, regardless of USS quirks.
-    private void EnforceLayerOrder()
-    {
-        if (_diceRoot == null) return;
-
-        // Desired order (back -> front):
-        // background/dice/roulette, dice lines, speed digits
-        if (_diceRoulette != null) _diceRoulette.SendToBack();
-
-        if (_diceLines != null && _speedTens != null)
-            _diceLines.PlaceBehind(_speedTens);
-
-        if (_diceLines != null && _speedOnes != null)
-            _diceLines.PlaceBehind(_speedOnes);
-
-        // Ensure digits render above lines 
-        if (_speedTens != null) _speedTens.BringToFront();
-        if (_speedOnes != null) _speedOnes.BringToFront();
-    }
-
-    private void SyncSpeedClass()
-    {
-        if (_diceRoot == null) return;
-
-        // Remove old speed class.
-        if (!string.IsNullOrEmpty(_lastSpeedClass))
-            _diceRoot.RemoveFromClassList(_lastSpeedClass);
-
-        // Add current speed class (speed--0 .. speed--99).
-        if (_currentSpeed >= 0 && _currentSpeed <= 99)
-        {
-            _lastSpeedClass = SpeedClassPrefix + _currentSpeed;
-            _diceRoot.AddToClassList(_lastSpeedClass);
-        }
-        else
-        {
-            _lastSpeedClass = null;
-        }
     }
 
     private Sprite? GetSpeedDigitSprite(int speed)

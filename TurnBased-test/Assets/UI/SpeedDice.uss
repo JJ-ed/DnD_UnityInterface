@@ -13,8 +13,39 @@
   picking-mode: ignore;
 }
 
-.speedDice {
+.speedDiceStack {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  picking-mode: ignore;
+}
+
+.speedDiceRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: visible;
+  picking-mode: ignore;
+}
+
+/* Small vertical spacing between rows */
+.speedDiceRow--1,
+.speedDiceRow--2,
+.speedDiceRow--3,
+.speedDiceRow--4 {
+  margin-top: -26px;
+}
+
+.speedDice--stacked {
+  margin-left: -28.5px;
+}
+
+.speedDice {
+  position: relative;
   width: 72px;
   height: 72px;
 

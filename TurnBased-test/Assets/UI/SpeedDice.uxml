@@ -2,18 +2,31 @@
     <Style src="project://database/Assets/UI/SpeedDice.uss" />
 
     <ui:VisualElement name="SpeedDiceLayer" class="speedDiceLayer">
-        <ui:VisualElement name="SpeedDice" class="speedDice">
-            <ui:Image name="DiceBackground" class="speedDice__img" />
-            <ui:Image name="Dice" class="speedDice__img" />
+        <ui:VisualElement name="SpeedDiceStack" class="speedDiceStack">
+            
+            <!-- 5 fixed rows -->
+            <ui:VisualElement name="SpeedDiceRow0" class="speedDiceRow speedDiceRow--0">
+            
+                <!-- Prototype die (SpeedDiceView clones additional dice as needed). -->
+                <ui:VisualElement name="SpeedDice" class="speedDice">
+                    <ui:Image name="DiceBackground" class="speedDice__img" />
+                    <ui:Image name="Dice" class="speedDice__img" />
 
-            <ui:VisualElement name="DiceRouletteClip" class="speedDice__rouletteClip">
-                <ui:Image name="DiceRoulette" class="speedDice__roulette" />
+                    <ui:VisualElement name="DiceRouletteClip" class="speedDice__rouletteClip">
+                        <ui:Image name="DiceRoulette" class="speedDice__roulette" />
+                    </ui:VisualElement>
+
+                    <ui:Image name="SpeedTens" class="speedDice__digit" />
+                    <ui:Image name="SpeedOnes" class="speedDice__digit" />
+                
+                    <ui:Image name="DiceLines" class="speedDice__img" />
+                </ui:VisualElement>
             </ui:VisualElement>
 
-            <ui:Image name="SpeedTens" class="speedDice__digit" />
-            <ui:Image name="SpeedOnes" class="speedDice__digit" />
-            
-            <ui:Image name="DiceLines" class="speedDice__img" />
+            <ui:VisualElement name="SpeedDiceRow1" class="speedDiceRow speedDiceRow--1" />
+            <ui:VisualElement name="SpeedDiceRow2" class="speedDiceRow speedDiceRow--2" />
+            <ui:VisualElement name="SpeedDiceRow3" class="speedDiceRow speedDiceRow--3" />
+            <ui:VisualElement name="SpeedDiceRow4" class="speedDiceRow speedDiceRow--4" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

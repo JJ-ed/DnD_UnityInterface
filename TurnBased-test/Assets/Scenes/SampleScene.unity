@@ -662,7 +662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedDiceView
   target: {fileID: 745648191}
-  worldOffset: {x: 8.89, y: -1.8, z: 0}
+  worldOffset: {x: 8.89, y: -11, z: 0}
   scaleWithCameraZoom: 1
   referenceOrthographicSize: 13.5
   zoomScaleClamp: {x: 0.6, y: 1.6}
@@ -670,8 +670,9 @@ MonoBehaviour:
   diceSprite: {fileID: 4829161311293996299, guid: 01df5ffb0eee84c949db882b78f6c909, type: 3}
   diceLinesSprite: {fileID: -2185493843412862122, guid: 01df5ffb0eee84c949db882b78f6c909, type: 3}
   diceRouletteSprite: {fileID: 0}
-  minSpeed: 11
-  maxSpeed: 11
+  minSpeed: 12
+  maxSpeed: 5
+  diceCount: 1
   speedDigitSprites:
   - {fileID: -4167172091139399991, guid: 7d2ae22e6ca6a40eb8faa9f45a464bc6, type: 3}
   - {fileID: 5788299898937059849, guid: 5176e6d4fb315428a96178e4317aab1e, type: 3}
