@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public sealed class HandView : MonoBehaviour
 {
     private const string HandElementName = "Hand";
+    
     private const string CardElementName = "Card";
     private const string CardBgElementName = "CardBg";
     private const string CardOverlayElementName = "CardOverlay";
@@ -16,13 +17,9 @@ public sealed class HandView : MonoBehaviour
     private const string CostIconElementName = "CostIcon";
 
     private const string HoverClass = "card--hover";
-    private const string SelectedClass = "card--selected";
 
     [Header("Template")]
     [SerializeField] private VisualTreeAsset? cardTemplate;
-
-    [Header("Selection")]
-    [SerializeField] private bool singleSelect = true;
 
     [Header("Hand Layout")]
     [Tooltip("Negative margin (px) between cards. More negative = more overlap.")]
@@ -62,24 +59,12 @@ public sealed class HandView : MonoBehaviour
     };
 
     private VisualElement? _hand;
-    private readonly List<VisualElement> _cards = new();
 
     private void OnEnable()
     {
-        if (cardTemplate == null)
-        {
-            Debug.LogError($"`{nameof(HandView)}` is missing a card template. Assign `Assets/UI/CardTemplate.uxml`.");
-            return;
-        }
 
         var root = GetComponent<UIDocument>().rootVisualElement;
         _hand = root.Q<VisualElement>(HandElementName);
-        if (_hand == null)
-        {
-            Debug.LogError($"`{nameof(HandView)}` could not find a VisualElement named '{HandElementName}'. " +
-                           "Make sure your UIDocument Source Asset is `Assets/UI/HandScreen.uxml` (or that your container is named correctly).");
-            return;
-        }
 
         // Apply hand background (if assigned).
         SetSpriteAsBackground(_hand, handBackgroundSprite);
@@ -87,14 +72,13 @@ public sealed class HandView : MonoBehaviour
         Rebuild(demoHand);
     }
 
-    /// <summary>Clears and rebuilds the UI from the provided card list.</summary>
+    //Clears and rebuilds the UI from the provided card list.
     public void Rebuild(IReadOnlyList<CardData> cards)
     {
         if (_hand == null) return;
         if (cardTemplate == null) return;
 
         _hand.Clear();
-        _cards.Clear();
 
         var count = cards.Count;
 
@@ -118,58 +102,40 @@ public sealed class HandView : MonoBehaviour
 
             _hand.Add(instance);
 
-            // Find the actual card root element (named "Card") inside the clone.
             var cardRoot = instance.Q<VisualElement>(CardElementName) ?? instance;
-            _cards.Add(cardRoot);
+            cardRoot.pickingMode = PickingMode.Position;
 
-            // Background layers.
-            SetImageSprite(instance.Q<Image>(CardBgElementName), cardBackgroundSprite);
-            SetImageSprite(instance.Q<Image>(CardOverlayElementName), cardOverlaySprite);
+            var cardBg = instance.Q<Image>(CardBgElementName);
+            SetImageSprite(cardBg, cardBackgroundSprite);
+            if (cardBg != null) cardBg.pickingMode = PickingMode.Ignore;
 
-            // Corner decorations.
-            SetImageSprite(instance.Q<Image>(CornerTopLeftElementName), cornerTopLeftSprite);
-            SetImageSprite(instance.Q<Image>(CornerBottomRightElementName), cornerBottomRightSprite);
+            var cardOverlay = instance.Q<Image>(CardOverlayElementName);
+            SetImageSprite(cardOverlay, cardOverlaySprite);
+            if (cardOverlay != null) cardOverlay.pickingMode = PickingMode.Ignore;
 
-            // Text / cost.
+            var cornerTl = instance.Q<Image>(CornerTopLeftElementName);
+            SetImageSprite(cornerTl, cornerTopLeftSprite);
+            if (cornerTl != null) cornerTl.pickingMode = PickingMode.Ignore;
+
+            var cornerBr = instance.Q<Image>(CornerBottomRightElementName);
+            SetImageSprite(cornerBr, cornerBottomRightSprite);
+            if (cornerBr != null) cornerBr.pickingMode = PickingMode.Ignore;
+
             var title = instance.Q<Label>(TitleElementName);
-            if (title != null) title.text = data.Title;
+            if (title != null)
+            {
+                title.text = data.Title;
+                title.pickingMode = PickingMode.Ignore;
+            }
 
-            ApplyLightCost(instance.Q<Image>(CostIconElementName), data.Cost);
+            var costIcon = instance.Q<Image>(CostIconElementName);
+            ApplyLightCost(costIcon, data.Cost);
+            if (costIcon != null) costIcon.pickingMode = PickingMode.Ignore;
 
             // Interaction: make focusable for keyboard/gamepad navigation.
             cardRoot.focusable = true;
             cardRoot.tabIndex = 0;
-
-            // Store selection state per-card.
-            cardRoot.userData = false; // selected?
-
-            // Click / hover.
-            cardRoot.AddManipulator(new Clickable(() => OnCardClicked(cardRoot)));
-            cardRoot.RegisterCallback<PointerEnterEvent>(_ => cardRoot.AddToClassList(HoverClass));
-            cardRoot.RegisterCallback<PointerLeaveEvent>(_ => cardRoot.RemoveFromClassList(HoverClass));
         }
-    }
-
-    private void OnCardClicked(VisualElement card)
-    {
-        if (singleSelect)
-        {
-            for (var i = 0; i < _cards.Count; i++)
-            {
-                var other = _cards[i];
-                if (other == card) continue;
-
-                other.userData = false;
-                other.RemoveFromClassList(SelectedClass);
-            }
-        }
-
-        var selected = card.userData is bool b && b;
-        selected = !selected;
-        card.userData = selected;
-
-        if (selected) card.AddToClassList(SelectedClass);
-        else card.RemoveFromClassList(SelectedClass);
     }
 
     private void ApplyLightCost(Image? costIcon, int lightCost)
@@ -183,16 +149,12 @@ public sealed class HandView : MonoBehaviour
         if (lightCost < 0 || lightCost > 9) return null;
         if (lightCostSprites == null || lightCostSprites.Count < 10) return null;
 
-        // Mapping:
-        // 1 -> _0, 2 -> _1, ... 9 -> _8, 0 -> _9
         var index = lightCost == 0 ? 9 : lightCost - 1;
         return lightCostSprites[index];
     }
 
-    /// <summary>
-    /// Sets a Sprite as a VisualElement background.
-    /// Uses Background.FromSprite(Sprite) when available (atlas/sliced-safe), otherwise falls back to sprite.texture.
-    /// </summary>
+    // Sets a Sprite as a VisualElement background.
+    // Uses Background. FromSprite(Sprite) when available (atlas/sliced-safe), otherwise falls back to sprite.texture.
     private static void SetSpriteAsBackground(VisualElement target, Sprite? sprite)
     {
         if (sprite == null)
@@ -222,10 +184,8 @@ public sealed class HandView : MonoBehaviour
         target.style.backgroundImage = new StyleBackground(sprite.texture);
     }
 
-    /// <summary>
-    /// Sets a Sprite on a UI Toolkit Image element.
-    /// Uses Image.sprite when available; otherwise falls back to Image.image (Texture2D).
-    /// </summary>
+    // Sets a Sprite on a UI Toolkit Image element.
+    // Uses Image.sprite when available; otherwise falls back to Image.image (Texture2D).
     private static void SetImageSprite(Image? image, Sprite? sprite)
     {
         if (image == null) return;

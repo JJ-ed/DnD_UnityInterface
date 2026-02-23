@@ -586,9 +586,9 @@ MonoBehaviour:
   diceSprite: {fileID: 4829161311293996299, guid: 01df5ffb0eee84c949db882b78f6c909, type: 3}
   diceLinesSprite: {fileID: -2185493843412862122, guid: 01df5ffb0eee84c949db882b78f6c909, type: 3}
   diceRouletteSprite: {fileID: 0}
-  minSpeed: 17
-  maxSpeed: 17
-  diceCount: 3
+  minSpeed: 20
+  maxSpeed: 10
+  diceCount: 28
   offsetFor1Layer: {x: 70, y: -17}
   offsetFor2Layers: {x: 72.2, y: -7.55}
   offsetFor3Layers: {x: 70.5, y: -3.43}
