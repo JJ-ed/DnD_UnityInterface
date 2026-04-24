@@ -33,7 +33,8 @@ namespace Pages {
         RangedSingleUse,
         SpecialSingleUse,
         MassSummation,
-        MassIndividual
+        MassIndividual,
+        Magic
     }
     public enum DieType
     {

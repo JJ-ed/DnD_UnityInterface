@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 0bd7571f18b1d469ebd397653cb9e2ed
+guid: 50d5f84c6c9184ec5a4f70e907e3dcb8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7857536792324979261
-    second: CardShadow (1)_0
-  - first:
-      213: 6637914246974362576
-    second: CardShadow (1)_1
+      213: -4864846171925406928
+    second: UICard_range_farIcon_noncolor (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CardShadow (1)_0
+      name: UICard_range_farIcon_noncolor (1)_0
       rect:
         serializedVersion: 2
-        x: 111
-        y: 101
-        width: 240
-        height: 298
+        x: 0
+        y: 0
+        width: 293
+        height: 276
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d3ab714e4149b0d60800000000000000
-      internalID: 7857536792324979261
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CardShadow (1)_1
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 75
-        width: 462
-        height: 358
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0d35964a6db9e1c50800000000000000
-      internalID: 6637914246974362576
+      spriteID: 03b97738e289c7cb0800000000000000
+      internalID: -4864846171925406928
       vertices: []
       indices: 
       edges: []
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CardShadow (1)_0: 7857536792324979261
-      CardShadow (1)_1: 6637914246974362576
+      UICard_range_farIcon_noncolor (1)_0: -4864846171925406928
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
