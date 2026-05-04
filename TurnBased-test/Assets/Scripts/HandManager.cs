@@ -13,6 +13,11 @@ public class HandManager : MonoBehaviour
     public float tilt = 5f;
     private List<GameObject> cardObjects = new List<GameObject>();
     
+    void Awake() {
+        deckManager = FindObjectOfType<DeckManager>();
+    }
+
+
     public void AddCardToHand(Card cardData) {
         
         //Initiate the cards

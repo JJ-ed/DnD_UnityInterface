@@ -20,6 +20,14 @@ public class CardMovement : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private Quaternion targetRot;
     private Vector3 targetScale;
 
+    void Awake() {
+        basePosition = transform.localPosition;
+        baseRotation = transform.localRotation;
+        targetPos = basePosition;
+        targetRot = baseRotation;
+        targetScale = Vector3.one;
+    }
+    
     void Update() {
         float speed = Time.deltaTime * hoverSpeed;
         transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, speed);
@@ -45,6 +53,8 @@ public class CardMovement : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
+        Debug.Log($"[CardMovement] OnPointerEnter on {name}, currentState={currentState}", this);
+
         if (currentState == 0) {
             currentState = 1;
             originalSiblingIndex = transform.GetSiblingIndex();

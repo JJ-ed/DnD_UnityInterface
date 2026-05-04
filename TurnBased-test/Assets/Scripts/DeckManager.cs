@@ -11,7 +11,7 @@ public class DeckManager : MonoBehaviour
 
 
    void Start() {
-    //Load all card assets from the Resources folder
+    //Load all card assets from the Resources folde
     Card[] cards = Resources.LoadAll<Card>("Cards");
 
     // Add the loaded cards to the allCards list
